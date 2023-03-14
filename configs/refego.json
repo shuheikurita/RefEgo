@@ -1,7 +1,7 @@
 {
-    "combine_datasets": ["ego4d"],
-    "combine_datasets_val": ["ego4d"],
-    "refexp_dataset_name": "ego4d",
+    "combine_datasets": ["refego"],
+    "combine_datasets_val": ["refego"],
+    "refexp_dataset_name": "refego",
     "epochs": 5,
     "lr_drop": 3
 }
