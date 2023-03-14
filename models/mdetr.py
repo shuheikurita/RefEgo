@@ -38,6 +38,7 @@ class MDETR(nn.Module):
         qa_dataset: Optional[str] = None,
         split_qa_heads=True,
         predict_final=False,
+        with_binary_head=False,
     ):
         """Initializes the model.
 
@@ -55,6 +56,7 @@ class MDETR(nn.Module):
             split_qa_heads: If true, use several head for each question type
             predict_final: If true, will predict if a given box is in the actual referred set.
                            Useful for CLEVR-Ref+ only currently.
+            with_binary_head: If true, add the extra head for binary classification.
         """
         super().__init__()
         self.num_queries = num_queries
@@ -67,6 +69,8 @@ class MDETR(nn.Module):
         if qa_dataset is not None:
             nb_heads = 6 if qa_dataset == "gqa" else 4
             self.qa_embed = nn.Embedding(nb_heads if split_qa_heads else 1, hidden_dim)
+        elif with_binary_head:
+            self.qa_embed = nn.Embedding(1, hidden_dim)
 
         self.input_proj = nn.Conv2d(backbone.num_channels, hidden_dim, kernel_size=1)
         self.backbone = backbone
@@ -84,6 +88,8 @@ class MDETR(nn.Module):
 
         self.qa_dataset = qa_dataset
         self.split_qa_heads = split_qa_heads
+        self.with_binary_head = with_binary_head
+
         if qa_dataset is not None:
             if split_qa_heads:
                 self.answer_type_head = nn.Linear(hidden_dim, 5)
@@ -105,6 +111,8 @@ class MDETR(nn.Module):
                 # TODO: make this more general
                 assert qa_dataset == "gqa", "Clevr QA is not supported with unified head"
                 self.answer_head = nn.Linear(hidden_dim, 1853)
+        elif with_binary_head:
+            self.answer_binary_head = nn.Linear(hidden_dim, 1)
 
     def forward(self, samples: NestedTensor, captions, encode_and_save=True, memory_cache=None):
         """The forward expects a NestedTensor, which consists of:
@@ -127,9 +135,10 @@ class MDETR(nn.Module):
         if encode_and_save:
             assert memory_cache is None
             features, pos = self.backbone(samples)
+
             src, mask = features[-1].decompose()
             query_embed = self.query_embed.weight
-            if self.qa_dataset is not None:
+            if self.qa_dataset is not None or self.with_binary_head:
                 query_embed = torch.cat([query_embed, self.qa_embed.weight], 0)
             memory_cache = self.transformer(
                 self.input_proj(src),
@@ -181,11 +190,14 @@ class MDETR(nn.Module):
                         out["pred_answer_attr"] = self.answer_attr_head(answer_embeds[:, 3])
                     else:
                         assert False, f"Invalid qa dataset {self.qa_dataset}"
-
                 else:
                     answer_embeds = hs[0, :, -1]
                     hs = hs[:, :, :-1]
                     out["pred_answer"] = self.answer_head(answer_embeds)
+            elif self.with_binary_head:
+                answer_embeds = hs[0, :, -1:]
+                hs = hs[:, :, :-1]
+                out["pred_answer_binary"] = self.answer_binary_head(answer_embeds[:, 0]).squeeze(-1)
 
             outputs_class = self.class_embed(hs)
             outputs_coord = self.bbox_embed(hs).sigmoid()
@@ -412,6 +424,23 @@ class QACriterionClevr(nn.Module):
 
         return loss
 
+class CriterionRefEgo(nn.Module):
+    def __init__(self):
+        super().__init__()
+
+    def forward(self, output, answers):
+        loss = {}
+        is_binary = answers["answer_type"] == 0
+
+        binary_norm = is_binary.sum() if is_binary.any() else 1.0
+        loss["loss_answer_binary"] = (
+            F.binary_cross_entropy_with_logits(output["pred_answer_binary"], answers["answer_binary"].float(), reduction="none")
+            .masked_fill(~is_binary, 0)
+            .sum()
+            / binary_norm
+        )
+
+        return loss
 
 class SetCriterion(nn.Module):
     """This class computes the loss for DETR.
@@ -744,6 +773,7 @@ def build(args):
         qa_dataset=qa_dataset,
         split_qa_heads=args.split_qa_heads,
         predict_final=args.predict_final,
+        with_binary_head=args.binary_head,
     )
     if args.mask_model != "none":
         model = DETRsegm(
@@ -821,6 +851,9 @@ def build(args):
             qa_criterion = QACriterionClevr()
         else:
             assert False, f"Invalid qa dataset {qa_dataset}"
+        qa_criterion.to(device)
+    elif "refego" in args.combine_datasets and args.binary_head:
+        qa_criterion = CriterionRefEgo()
         qa_criterion.to(device)
     else:
         qa_criterion = None

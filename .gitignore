@@ -17,3 +17,5 @@ not_tracked_dir/
 .idea/*
 *.ext3
 flickr/*
+data/
+core

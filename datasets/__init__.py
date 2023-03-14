@@ -16,7 +16,7 @@ from .mixed import build as build_mixed
 from .phrasecut import build as build_phrasecut
 from .refexp import build as build_refexp
 from .vg import build as build_vg
-from .refego import build import build_refego
+from .refego import build as build_refego
 
 
 def get_coco_api_from_dataset(dataset):

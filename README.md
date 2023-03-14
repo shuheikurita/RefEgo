@@ -21,16 +21,9 @@ $ make run
 
 ### Training MDETR on Ref-Egocentric
 ```
-export TOKENIZERS_PARALLELISM=false
-export CUBLAS_WORKSPACE_CONFIG=:16:8
-
-python -m torch.distributed.launch --nproc_per_node=2 --use_env \
-main.py --dataset_config configs/refego.json --batch_size 4 \
---backbone timm_tf_efficientnet_b3_ns \
---output-dir ./logs/refego \
---ema \
---num_workers 8 \
---load ./data/pretrained/refcoco_EB3_checkpoint.pth
+$ make train_conventional
+$ make train_all
+$ make train_binary_head
 ```
 
 ## Acknowledgement

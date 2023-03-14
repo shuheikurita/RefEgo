@@ -31,7 +31,6 @@ class RefEgoDataset(torchvision.datasets.CocoDetection):
 
     def __getitem__(self, index):
         idx = index // self.num_caption_per_img
-
         img, target = super().__getitem__(idx)
         image_id = self.ids[idx]
 
@@ -82,11 +81,11 @@ class RefEgoDataset(torchvision.datasets.CocoDetection):
 def build(image_set, args):
     root = Path("/opt/ml/data/refego/")
     img_folder = root / "images"
-    ann_file = root / f"dataset/{image_set}.json"
+    ann_file = root / f"annotations/{image_set}.json"
 
     tokenizer = RobertaTokenizerFast.from_pretrained(args.text_encoder_type)
 
-    dataset = Ego4dDataset(
+    dataset = RefEgoDataset(
         img_folder,
         ann_file,
         transforms=make_coco_transforms(image_set, cautious=True),
