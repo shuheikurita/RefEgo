@@ -188,6 +188,18 @@ def get_args_parser():
     parser.add_argument("--remove_difficult", action="store_true")
     parser.add_argument("--masks", action="store_true")
 
+    # RefEgocentric
+    parser.add_argument(
+        "--binary_head",
+        action="store_true",
+        help="Binary head for existing referred object",
+    )
+    parser.add_argument(
+        "--use_no_target",
+        action="store_true",
+        help="Use only images that include the referred object",
+    )
+
     # Loss
     parser.add_argument(
         "--no_aux_loss",

@@ -18,19 +18,29 @@ $ make run
 ```
 
 ### Data directory tree structure
+```
+data
+├── models
+│   └── refcoco_EB3_checkpoint.pth
+└── refego
+    ├── annotations
+    │   ├── test.json
+    │   ├── train.json
+    │   └── val.json
+    └── images
+        ├── 000786a7-3f9d-4fe6-bfb3-045b368f7d44--643-10
+        │   ├── img0000000643.jpg
+        │   ├── img0000000644.jpg
+        │   ├── img0000000645.jpg
+        │   ├── img0000000646.jpg
+        │   ├── img0000000647.jpg
+```
 
 ### Training MDETR on Ref-Egocentric
 ```
-export TOKENIZERS_PARALLELISM=false
-export CUBLAS_WORKSPACE_CONFIG=:16:8
-
-python -m torch.distributed.launch --nproc_per_node=2 --use_env \
-main.py --dataset_config configs/ego4d.json --batch_size 4 \
---backbone timm_tf_efficientnet_b3_ns \
---output-dir ./logs/refego \
---ema \
---num_workers 8 \
---load ./data/pretrained/refcoco_EB3_checkpoint.pth
+$ make train_conventional
+$ make train_all
+$ make train_binary_head
 ```
 
 ## Acknowledgement
