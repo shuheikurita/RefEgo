@@ -44,7 +44,10 @@ RUN pip install torch==1.8.1+cu111 torchvision==0.9.1+cu111 -f https://download.
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
 RUN python -m spacy download en_core_web_sm
+RUN pip install timm==0.4.12
 
+ENV TOKENIZERS_PARALLELISM false
+ENV CUBLAS_WORKSPACE_CONFIG :4096:8
 WORKDIR /opt/ml
 
 ENTRYPOINT [ "/bin/bash" ]
