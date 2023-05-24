@@ -855,6 +855,7 @@ def build(args):
     elif "refego" in args.combine_datasets and args.binary_head:
         qa_criterion = CriterionRefEgo()
         qa_criterion.to(device)
+        weight_dict["loss_answer_binary"] = 1
     else:
         qa_criterion = None
     return model, criterion, contrastive_criterion, qa_criterion, weight_dict
