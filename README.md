@@ -1,4 +1,8 @@
-# Ref-Egocentric: Referring Expression Comprehension Dataset from First-Person Perception of Ego4D
+# RefEgo-MDETR
+
+MDETR implementation for RefEgo: Referring Expression Comprehension Dataset from First-Person Perception of Ego4D.
+
+[RefEgo dataset](https://github.com/shuheikurita/RefEgo) [[Paper](https://arxiv.org/abs/2308.12035)]
 
 ## Get Started
 
