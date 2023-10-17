@@ -9,7 +9,7 @@ Dataset and codebase for the ICCV2023 paper RefEgo: Referring Expression Compreh
 - 2FPS for annotation bboxes with two textual referring expressions for a single object.
 - Objects can be out-of-frame of the first-person video (no-referred-object). 
 
-[[Paper](https://arxiv.org/abs/2308.12035)][[video](https://a000.amtvirtual.net/refego.mp4)][[code](https://github.com/shuheikurita/RefEgo)][[data](a000.amtvirtual.net/RefEgoAnnotations.zip)]
+[[paper](https://arxiv.org/abs/2308.12035)][[video](https://a000.amtvirtual.net/refego.mp4)][[code](https://github.com/shuheikurita/RefEgo)][[data](a000.amtvirtual.net/RefEgoAnnotations.zip)]
 
 ## Dataset
 Annotations can be downloaded from [here](a000.amtvirtual.net/RefEgoAnnotations.zip).
