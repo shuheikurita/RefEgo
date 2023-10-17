@@ -1,4 +1,4 @@
-# RefEgo
+# RefEgo: Referring Expression Comprehension Dataset from First-Person Perception of Ego4D
 
 ![RefEgo teaser](misc/refego_teaser.gif)
 
