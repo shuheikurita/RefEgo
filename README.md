@@ -12,7 +12,7 @@ Dataset and codebase for the ICCV2023 paper RefEgo: Referring Expression Compreh
 [[paper](https://arxiv.org/abs/2308.12035)][[video](https://a000.amtvirtual.net/refego.mp4)][[code](https://github.com/shuheikurita/RefEgo)][[data](a000.amtvirtual.net/RefEgoAnnotations.zip)]
 
 ## Dataset
-Annotations can be downloaded from [here](a000.amtvirtual.net/RefEgoAnnotations.zip).
+Annotations can be downloaded from [here](https://a000.amtvirtual.net/RefEgoAnnotations.zip).
 See [dataset.md](dataset.md) for details.
 
 ## Model
