@@ -1,6 +1,6 @@
 # RefEgo
 
-[RefEgo teaser](misc/refego_teaser.gif)
+![RefEgo teaser](misc/refego_teaser.gif)
 
 Dataset and codebase for the ICCV2023 paper RefEgo: Referring Expression Comprehension Dataset from First-Person Perception of Ego4D.
 
