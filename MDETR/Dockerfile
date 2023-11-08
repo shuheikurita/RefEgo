@@ -44,7 +44,7 @@ RUN pip install torch==1.8.1+cu111 torchvision==0.9.1+cu111 -f https://download.
 ADD requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
 RUN pip install pydantic==1.7.4 spacy==3.5.2 spacy-legacy==3.0.12 spacy-loggers==1.0.4 nltk
-RUN pip install git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI\&egg=pycocotools
+RUN pip install git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI&egg=pycocotools
 RUN python -m spacy download en_core_web_sm
 RUN pip install timm==0.4.12
 
