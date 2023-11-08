@@ -41,7 +41,7 @@ RUN pyenv install ${PYTHON_VERSION} && pyenv global ${PYTHON_VERSION}
 
 RUN pip install -U pip setuptools
 RUN pip install torch==1.8.1+cu111 torchvision==0.9.1+cu111 -f https://download.pytorch.org/whl/torch_stable.html
-COPY requirements.txt /tmp/requirements.txt
+ADD requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
 RUN pip install pydantic==1.7.4 spacy==3.5.2 spacy-legacy==3.0.12 spacy-loggers==1.0.4 nltk
 RUN pip install git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI\&egg=pycocotools
