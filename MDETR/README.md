@@ -11,11 +11,16 @@ MDETR implementation for RefEgo: Referring Expression Comprehension Dataset from
 - Docker
 - CUDA > 11.2
 
+We prepare a Makefile for docker build and run.
 ```
+# Specify the data directory for training/validation of RefEgo
+# For inference-only purpose, you can specify a empty dir.
 $ export DATADIR=path\to\data
-# build docker image
+
+# Build docker image
 $ make build
-# run docker container
+
+# Run docker container
 $ make run
 ```
 
