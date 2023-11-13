@@ -5,9 +5,7 @@ MDETR implementation for RefEgo: Referring Expression Comprehension Dataset from
 ## Get Started
 
 ### Environment
-**OS**
-- Ubuntu 20.04 LTS
-**Software**
+**Prerequirements**
 - Docker
 - CUDA > 11.2
 
