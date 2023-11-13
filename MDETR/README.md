@@ -14,7 +14,7 @@ MDETR implementation for RefEgo: Referring Expression Comprehension Dataset from
 We prepare a Makefile for docker build and run.
 ```
 # Specify the data directory for training/validation of RefEgo
-# For inference-only purpose, you can specify a empty dir.
+# For inference-only purpose, you can specify an empty dir.
 $ export DATADIR=path\to\data
 
 # Build docker image
