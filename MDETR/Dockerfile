@@ -47,6 +47,8 @@ RUN pip install pydantic==1.7.4 spacy==3.5.2 spacy-legacy==3.0.12 spacy-loggers=
 RUN pip install git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI&egg=pycocotools
 RUN python -m spacy download en_core_web_sm
 RUN pip install timm==0.4.12
+RUN pip install opencv-python
+RUN pip install jupyterlab
 
 ENV TOKENIZERS_PARALLELISM false
 ENV CUBLAS_WORKSPACE_CONFIG :4096:8
