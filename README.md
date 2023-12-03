@@ -16,7 +16,7 @@ Annotations can be downloaded from [\[RefEgo dataset\]](https://a000.amtvirtual.
 See [dataset.md](dataset.md) for details.
 
 ## Model
-MDETR models are [here](MDETR/README.md).
+MDETR-based models and checkpoints and are [here](MDETR/README.md).
 
 ## Leaderboard
 Coming soon. 
