@@ -27,7 +27,7 @@ You can get the off-the-shelf model of MDETR binary-head. Place the fintuned mod
 ```sh
 wget -P checkpoints/refego_mdetr_binary_scratch.pth http://a000.amtvirtual.net/refego/checkpoints/refego_mdetr_binary_scratch.pth
 ```
-and [notebook](MDETR/MDETR_BH_inference.ipynb).
+and [notebook](MDETR_BH_inference.ipynb).
 
 ### Data directory tree structure
 ```
