@@ -22,6 +22,13 @@ $ make build
 $ make run
 ```
 
+### Get Model and try!
+You can get the off-the-shelf model of MDETR binary-head. Place the fintuned model
+```sh
+wget -P checkpoints/refego_mdetr_binary_scratch.pth http://a000.amtvirtual.net/refego/checkpoints/refego_mdetr_binary_scratch.pth
+```
+and [demo](MDETR/MDETR_BH_inference.ipynb).
+
 ### Data directory tree structure
 ```
 data
