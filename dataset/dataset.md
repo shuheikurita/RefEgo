@@ -29,9 +29,16 @@ Check `['annotation']` of json files:
 
 Use ffmpeg to extract images from Ego4D. This is an example of FPS-2 extracting:
 ```sh
-ffmpeg -hwaccel cuda -i ego4d/v1/full_scale/{uid}.mp4 -vf "fps=2,scale=640:-1" -qscale 1 {outdir}/{video_id}/img%10d.jpg
+ffmpeg -i ego4d/v1/full_scale/{uid}.mp4 -vf "fps=2,scale=640:-1" -qscale 1 {outdir}/{video_id}/img%10d.jpg
 ```
 - video_id: video ID of Ego4D.
+- You can use `-hwaccel cuda` if you need
+
+(Note: we are preparing a shell script to automating this procedure.)
+
+After extracting images, 
+
+
 
 # Clip ID
 
