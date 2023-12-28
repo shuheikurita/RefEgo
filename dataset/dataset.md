@@ -27,18 +27,25 @@ Check `['annotation']` of json files:
 
 # Extract images from Ego4D
 
-Use ffmpeg to extract images from Ego4D. This is an example of FPS-2 extracting:
+Requirement
+- ffmpeg
+
+We prepare two shell scripts for converting Ego4D videos into RefEgo images.
 ```sh
-ffmpeg -i ego4d/v1/full_scale/{uid}.mp4 -vf "fps=2,scale=640:-1" -qscale 1 {outdir}/{video_id}/img%10d.jpg
+# Apply ffmpeg for Ego4D v1 videos.
+bash extract_images.sh path_to_ego4d path_to_fps2_images (--cuda)
+
+# Split images into RefEgo style video clips
+bash split_video_clips.sh path_to_fps2_images path_to_extracted_fps2 
 ```
-- video_id: video ID of Ego4D.
-- You can use `-hwaccel cuda` if you need
 
-(Note: we are preparing a shell script to automating this procedure.)
+For exmaple, if you place Ego4D videos in `/data/ego4d/v1/full_scale/`, then
+```sh
+bash extract_images.sh /data/ego4d/v1/full_scale/ /data/ego4d_images
+bash split_video_clips.sh /data/ego4d_images /data/refego/images
+```
 
-After extracting images, 
-
-
+- `--cuda` is optional when `-hwaccel cuda` is available in ffmpeg.
 
 # Clip ID
 
