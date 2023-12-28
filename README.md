@@ -13,7 +13,7 @@ Dataset and codebase for the ICCV2023 paper RefEgo: Referring Expression Compreh
 
 ## Dataset
 Annotations can be downloaded from [\[RefEgo dataset\]](https://a000.amtvirtual.net/RefEgoAnnotations.zip).
-See [dataset/dataset.md](dataset.md) for details.
+See [dataset/dataset.md](dataset/dataset.md) for details.
 
 ## Model
 MDETR-based models and checkpoints and are [here](MDETR/README.md). We also add a [notebook](MDETR/MDETR_BH_inference.ipynb) for trying our model!
