@@ -12,14 +12,13 @@ Dataset and codebase for the ICCV2023 paper RefEgo: Referring Expression Compreh
 [\[paper\]](https://arxiv.org/abs/2308.12035)[\[video\]](https://refegopublic.s3.amazonaws.com/refego.mp4)[\[code\]](https://github.com/shuheikurita/RefEgo)[\[RefEgo dataset\]](https://refegopublic.s3.amazonaws.com/RefEgoAnnotations.zip)
 
 ## Dataset
-Annotations can be downloaded from [\[RefEgo dataset\]](https://refegopublic.s3.amazonaws.com/RefEgoAnnotations.zip).
+Annotations can be downloaded from RefEgo dataset [\[annotation\]](https://refegopublic.s3.amazonaws.com/RefEgoAnnotations.zip).
 See [dataset/README.md](dataset/README.md) for details.
+
+[NEW] We decide to include the test split file in FPS2 in the updated annotation file. Please redownload the [annotation](https://refegopublic.s3.amazonaws.com/RefEgoAnnotations.zip) if you have old ones.
 
 ## Model
 MDETR-based models and checkpoints and are [here](MDETR/README.md). We also add a [notebook](MDETR/MDETR_BH_inference.ipynb) for trying our model!
-
-## Leaderboard
-Coming soon. 
 
 ## Dataset License
 RefEgo dataset annotations (bounding boxes and texts) are distributed under CC BY-SA 4.0.
