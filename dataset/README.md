@@ -4,7 +4,7 @@ We use RefCOCO-compatible annotation files for MDETR training.
 
 - dataset/refego_train_RefCOCOstyle_fps2.json
 - dataset/refego_val_RefCOCOstyle_fps2.json
-
+- dataset/refego_test_RefCOCOstyle_fps2.json
 - dataset/refego_video_list.json : video list
 
 
