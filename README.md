@@ -15,8 +15,11 @@ Dataset and codebase for the ICCV2023 paper RefEgo: Referring Expression Compreh
 Annotations can be downloaded from RefEgo dataset [\[annotation\]](https://refegopublic.s3.amazonaws.com/RefEgoAnnotations2.zip).
 See [dataset/README.md](dataset/README.md) for details.
 
-[IMPORTANT NOTICE] The original train/val/test JSON files included *critical bugs* on the scale of the processed image frames. We fixed this in [annotation](https://refegopublic.s3.amazonaws.com/RefEgoAnnotations2.zip).
-[NEWS] We decide to include the test split file in FPS2 in the updated annotation file. Please redownload the [annotation](https://refegopublic.s3.amazonaws.com/RefEgoAnnotations2.zip) if you have old ones.
+**[IMPORTANT NOTICE]** The original train/val/test JSON files contained *critical bugs* related to the frame indices of the processed images. We have fixed these issues in the updated [annotation](https://refegopublic.s3.amazonaws.com/RefEgoAnnotations2.zip). We confirmed that the released MDETR model achieves the same or very close scores to those reported in the paper.
+
+ The original train/val/test JSON files included *critical bugs* on the scale of the processed image frames. We fixed this in . I confirmed that this surely achieved the results the same or very close to those reported in the paper.
+
+**[NEWS]** We decide to include the test split file in FPS2 in the updated annotation file. Please redownload the [annotation](https://refegopublic.s3.amazonaws.com/RefEgoAnnotations2.zip) if you have old ones.
 
 ## Model
 MDETR-based models and checkpoints and are [here](MDETR/README.md). We also add a [notebook](MDETR/MDETR_BH_inference.ipynb) for trying our model!
